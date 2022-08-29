@@ -1,7 +1,7 @@
 // Code here
 document.addEventListener("DOMContentLoaded", () => {
 	fetchData(1).then((beer) => renderBeer(beer));
-    fetchData().then((beers) => renderNav(beers));
+	fetchData().then((beers) => renderNav(beers));
 });
 
 function fetchData(id = null) {
@@ -41,7 +41,9 @@ function renderNav(beers) {
 	beers.forEach((beer) => {
 		const li = document.createElement("li");
 		li.textContent = beer.name;
-		
+		li.addEventListener("click", () => {
+			fetchData(beer.id).then((beer) => renderBeer(beer));
+		});
 		beerList.appendChild(li);
 	});
 }
