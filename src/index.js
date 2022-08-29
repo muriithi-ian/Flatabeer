@@ -24,6 +24,8 @@ function renderBeer(beer) {
 	const beerImage = document.querySelector("#beer-image");
 	const beerDescription = document.querySelector("#beer-description");
 	const customerReviews = document.querySelector("#review-list");
+	const reviewForm = document.querySelector("#review-form");
+	const reviewFormInput = document.querySelector("#review");
 
 	/* renders beer*/
 	beerName.textContent = beer.name;
@@ -39,6 +41,17 @@ function renderBeer(beer) {
 		li.textContent = review;
 		customerReviews.appendChild(li);
 	});
+
+	/* add review */
+	reviewForm.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const review = reviewFormInput.value;
+		const li = document.createElement("li");
+		li.textContent = review;
+		customerReviews.appendChild(li);
+		reviewForm.reset();
+	});
+
 }
 
 function renderNav(beers) {
@@ -58,5 +71,3 @@ function renderNav(beers) {
 		beerList.appendChild(li);
 	});
 }
-
-
