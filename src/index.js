@@ -1,6 +1,7 @@
 // Code here
 document.addEventListener("DOMContentLoaded", () => {
 	fetchData(1).then((beer) => renderBeer(beer));
+    fetchData().then((beers) => renderNav(beers));
 });
 
 function fetchData(id = null) {
@@ -27,4 +28,20 @@ function renderBeer(beer) {
 	beerName.textContent = beer.name;
 	beerImage.src = beer.image_url;
 	beerDescription.textContent = beer.description;
+}
+
+function renderNav(beers) {
+	/* targets */
+	const beerList = document.querySelector("#beer-list");
+
+	//remove placeholder text
+	beerList.textContent = "";
+
+	//render list of beers
+	beers.forEach((beer) => {
+		const li = document.createElement("li");
+		li.textContent = beer.name;
+		
+		beerList.appendChild(li);
+	});
 }
